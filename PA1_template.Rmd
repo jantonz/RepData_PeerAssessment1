@@ -37,7 +37,7 @@ hist(steps_per_day$steps, xlab="Steps per day", main="Histogram of steps per day
 3. Calculate and report the mean and median of the total number of steps taken per day
 ```{r, echo=TRUE}
 steps_per_day_mean_median <- summarise(activity, mean=mean(steps, na.rm=T), median=median(steps, na.rm=T))
-return(steps_per_day_mean_median)
+print(steps_per_day_mean_median)
 ```
 
 ###Step 3: What is the average daily activity pattern?
@@ -80,6 +80,11 @@ Already done in the previous paragraph!
 na_activity <- group_by(na_activity, date)
 na_steps_per_day <- summarise(na_activity, steps=sum(steps))
 hist(na_steps_per_day$steps, xlab="Steps per day", main="Histogram of steps per day")
+```
+```{r, echo=TRUE}
+na_activity_day <- group_by(na_activity, date)
+na_activity_steps_per_day_mean_median <- summarise(na_activity_day, mean=mean(steps), median=median(steps))
+print(na_activity_steps_per_day_mean_median)
 ```
 
 Do these values differ from the estimates from the first part of the assignment? **Yes, they do.** What is the impact of imputing missing data on the estimates of the total daily number of steps? **The frequency of mid-values (10000-15000 steps per day) rises**
